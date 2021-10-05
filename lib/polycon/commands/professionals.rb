@@ -60,7 +60,13 @@ module Polycon
         ]
 
         def call(old_name:, new_name:, **)
-          warn "TODO: Implementar renombrado de profesionales con nombre '#{old_name}' para que pase a llamarse '#{new_name}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          #warn "TODO: Implementar renombrado de profesionales con nombre '#{old_name}' para que pase a llamarse '#{new_name}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+           rename = Models::Professional.rename(old_name, new_name)
+           if(rename)
+            warn "Se modificó el profesional correctamente."
+           else
+            warn "El profesional #{old_name} no existe."
+           end
         end
       end
     end

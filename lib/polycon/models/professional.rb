@@ -19,6 +19,14 @@ module Polycon
         end
 
         def self.rename(old_name, new_name)
+          old_name = Polycon::Utils::guion (old_name)
+          new_name = Polycon::Utils::guion (new_name)
+          if Polycon::Utils::professional_exists(old_name)
+            File.rename("/home/mocares/.polycon/#{old_name}","/home/mocares/.polycon/#{new_name}")
+            return true
+          end
+          return false
+        end
       end
     end
 end
