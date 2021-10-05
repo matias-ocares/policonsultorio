@@ -45,7 +45,13 @@ module Polycon
         ]
 
         def call(*)
-          warn "TODO: Implementar listado de profesionales.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          #warn "TODO: Implementar listado de profesionales.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          lista = Models::Professional.list
+          if (lista.length()>0)
+            puts lista
+          else
+            warn"No hay profesionales para mostrar."
+          end
         end
       end
 

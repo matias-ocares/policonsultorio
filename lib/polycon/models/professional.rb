@@ -27,6 +27,11 @@ module Polycon
           end
           return false
         end
+
+        def self.list
+            Dir.children("/home/mocares/.polycon/").map{|element|Polycon::Utils::espacio(element)}
+           
+        end
       end
     end
 end

@@ -15,5 +15,9 @@ module Polycon
         def self.guion (name) #Cambiar espacios por guión para profesionales
             return name.gsub " ", "_"
           end
+
+        def self.espacio (name) #Cambiar guiones por espacios para profesionales
+            return name.gsub "_", " "
+          end
     end
 end
