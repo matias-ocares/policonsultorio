@@ -12,7 +12,13 @@ module Polycon
         ]
 
         def call(name:, **)
-          warn "TODO: Implementar creación de un o una profesional con nombre '#{name}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+           # warn "TODO: Implementar creación de un o una profesional con nombre '#{name}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          crear = Models::Professional.create(name)
+          if(crear)
+            warn "Se cargó el profesional #{name} exitosamente."
+          else
+            warn "Ya existia el profesional #{name}."
+          end
         end
       end
 
