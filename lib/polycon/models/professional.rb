@@ -5,13 +5,13 @@ module Polycon
         attr_accessor :name
 
         def self.create(name)
-          name = Polycon::Utils::guion (name)
-            if Polycon::Utils::professional_exists(name)
-              return false
-            end
-            new(name)
-            Polycon::Utils.create_professional(name)
-            return true
+            name = Polycon::Utils::guion (name)
+              if Polycon::Utils::professional_exists(name)
+                return false
+              end
+              new(name)
+              Polycon::Utils.create_professional(name)
+              return true
         end
 
         def initialize (name)

@@ -2,6 +2,7 @@ module Polycon
     module Utils
 
         def self.polycon_root_exists
+            Dir.exist?("/home/mocares/.polycon")
         end
 
         def self.professional_exists(name)
