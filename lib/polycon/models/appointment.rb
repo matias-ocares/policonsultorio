@@ -5,10 +5,11 @@ module Polycon
 
         def self.create(date, name)
             name=Polycon::Utils::guion(name)
-            if(File.exist?(Polycon::PATH+"#{name}"+"/"+"#{date}"+".paf"))
+            path = Polycon::PATH+"#{name}"+"/"+"#{date}"+".paf"
+            if(File.exist?(path))
                 return false
             else
-                File.open(Polycon::PATH+"#{name}"+"/"+"#{date}"+".paf", "w")
+                File.open(path, "w")
                 return true
             end
         end
