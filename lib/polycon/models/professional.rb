@@ -32,6 +32,16 @@ module Polycon
             Dir.children(Polycon::PATH).map{|element|Polycon::Utils::espacio(element)}
            
         end
+
+        def self.delete(name)
+          name = Polycon::Utils::guion (name)
+          if(Dir.empty?(Polycon::PATH+"#{name}")) #pregunto si el directorio está vacío
+            Dir.rmdir(Polycon::PATH+"#{name}")
+            return true
+          else
+            return false
+          end
+        end
       end
     end
 end

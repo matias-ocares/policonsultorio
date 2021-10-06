@@ -21,7 +21,7 @@ module Polycon
               warn "Ya existia el profesional #{name}."
             end
           else
-            warn ("El directorio Polycon no existe")
+            warn "El directorio Polycon no existe"
           end
         end
       end
@@ -37,7 +37,20 @@ module Polycon
         ]
 
         def call(name: nil)
-          warn "TODO: Implementar borrado de la o el profesional con nombre '#{name}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          if(Polycon::Utils::polycon_root_exists)
+            if(Polycon::Utils::professional_exists(Polycon::Utils::guion(name)))
+              del=Models::Professional::delete(name)
+              if(del)
+                warn"Se elminió el profesional #{name} correctamente."
+              else
+                warn"El profesional #{name} tiene turnos, no puede ser borrado."
+              end
+            else
+              warn"El profesional #{name} no existe."
+            end
+          else
+            warn "El directorio Polycon no existe"
+          end
         end
       end
 
