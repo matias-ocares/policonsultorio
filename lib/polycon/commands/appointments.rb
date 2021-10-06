@@ -1,3 +1,4 @@
+require 'polycon/models/appointment'
 module Polycon
   module Commands
     module Appointments
@@ -16,7 +17,15 @@ module Polycon
         ]
 
         def call(date:, professional:, name:, surname:, phone:, notes: nil)
-          warn "TODO: Implementar creación de un turno con fecha '#{date}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+        if(Polycon::Utils::polycon_root_exists)
+          if(Polycon::Utils::professional_exists(Polycon::Utils::guion(professional)))
+            Models::Appointment.create(date, professional)
+          else
+            warn"El profesional #{professional} no existe."
+          end
+        else
+          warn "El directorio Polycon no existe"
+        end
         end
       end
 
