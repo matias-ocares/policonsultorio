@@ -19,7 +19,12 @@ module Polycon
         def call(date:, professional:, name:, surname:, phone:, notes: nil)
         if(Polycon::Utils::polycon_root_exists)
           if(Polycon::Utils::professional_exists(Polycon::Utils::guion(professional)))
-            Models::Appointment.create(date, professional)
+            create =Models::Appointment.create(date, professional)
+            if(create)
+              warn "Se creó el turno para #{name} #{surname} correctamente."
+            else
+              warn "El turno ya se encontraba tomado."
+            end
           else
             warn"El profesional #{professional} no existe."
           end
