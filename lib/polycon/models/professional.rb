@@ -22,14 +22,14 @@ module Polycon
           old_name = Polycon::Utils::guion (old_name)
           new_name = Polycon::Utils::guion (new_name)
           if Polycon::Utils::professional_exists(old_name)
-            File.rename("/home/mocares/.polycon/#{old_name}","/home/mocares/.polycon/#{new_name}")
+            File.rename(Polycon::PATH+"#{old_name}",Polycon::PATH+"#{new_name}")
             return true
           end
           return false
         end
 
         def self.list
-            Dir.children("/home/mocares/.polycon/").map{|element|Polycon::Utils::espacio(element)}
+            Dir.children(Polycon::PATH).map{|element|Polycon::Utils::espacio(element)}
            
         end
       end

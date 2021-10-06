@@ -2,15 +2,15 @@ module Polycon
     module Utils
 
         def self.polycon_root_exists
-            Dir.exist?("/home/mocares/.polycon")
+            Dir.exist?(Polycon::PATH)
         end
 
         def self.professional_exists(name)
-            Dir.exist? ("/home/mocares/.polycon/#{name}")
+            Dir.exist? (Polycon::PATH+"#{name}")
         end
 
         def self.create_professional(name)
-            FileUtils.mkdir_p "/home/mocares/.polycon/#{name}"
+            Dir.mkdir (Polycon::PATH+"#{name}")
         end
 
         def self.guion (name) #Cambiar espacios por guión para profesionales
