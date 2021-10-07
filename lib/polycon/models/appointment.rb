@@ -42,7 +42,11 @@ module Polycon
             puts"El profesional no existe." #no funciona ese mensaje
             
       end
-
+      
+      def self.list(professional)
+        Dir.children(Polycon::PATH+"#{professional}").map{|element|element.gsub(".paf","")}
+       
+    end
         def initialize (date, professional, name, surname, phone, notes)
           @date = date
           @professional = professional

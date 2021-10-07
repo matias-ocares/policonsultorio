@@ -19,7 +19,7 @@ module Polycon
         def call(date:, professional:, name:, surname:, phone:, notes: nil)
         if(Polycon::Utils::polycon_root_exists)
             puts Models::Appointment.create(date, professional, name, surname, phone, notes)
-          else
+        else
           warn "El directorio Polycon no existe"
         end
         end
@@ -81,8 +81,18 @@ module Polycon
         ]
 
         def call(professional:)
-          warn "TODO: Implementar listado de turnos de la o el profesional '#{professional}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          if(Polycon::Utils::polycon_root_exists)
+            lista = Models::Appointment.list(Polycon::Utils.guion(professional))
+            if (lista.length()>0)
+              puts lista
+            else
+              warn"No hay profesionales para mostrar."
+            end
+          else
+            warn "El directorio Polycon no existe"
+          end
         end
+    
       end
 
       class Reschedule < Dry::CLI::Command
