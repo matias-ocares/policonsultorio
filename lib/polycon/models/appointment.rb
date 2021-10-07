@@ -13,7 +13,14 @@ module Polycon
                 return "El turno se encuentra tomado."
              
               else
-                  File.open(path, "w")
+                  File.open(path, "w") do |fichero|
+                    fichero.puts(surname)
+                    fichero.puts(name)
+                    fichero.puts(phone)
+                    if(notes!= nil)
+                      fichero.puts(notes)
+                    end
+                  end
                   return "Se creó el turno para #{name} #{surname} correctamente."
              end
             end
