@@ -6,7 +6,7 @@ module Polycon
 
         def self.create(name)
             name = Polycon::Utils::guion (name)
-              if Polycon::Utils::professional_exists(name)
+              if Polycon::Utils.professional_exists(name)
                 return false
               end
               new(name)
@@ -42,6 +42,8 @@ module Polycon
             return false
           end
         end
+        
+
       end
     end
 end

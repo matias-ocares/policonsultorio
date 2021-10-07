@@ -7,7 +7,7 @@ module Polycon
 
         def self.professional_exists(name)
             Dir.exist? (Polycon::PATH+"#{name}")
-        end
+          end
 
         def self.create_professional(name)
             Dir.mkdir (Polycon::PATH+"#{name}")

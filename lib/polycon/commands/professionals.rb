@@ -12,7 +12,6 @@ module Polycon
         ]
 
         def call(name:, **)
-           # warn "TODO: Implementar creación de un o una profesional con nombre '#{name}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
           if(Polycon::Utils::polycon_root_exists)
             crear = Models::Professional.create(name)
             if(crear)
