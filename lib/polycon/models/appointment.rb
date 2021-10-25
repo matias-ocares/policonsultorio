@@ -55,6 +55,39 @@ module Polycon
           @phone = phone
           @notes = notes
         end
+
+        def self.show(date, professional)
+          turno=File.read(PATH+"#{professional}"+"/"+"#{date}"+".paf").split("\n")
+          
+          { date: date,
+            professional: professional,
+            name:turno[0],
+            surname:turno[1],
+            phone:turno[2],
+            notes:turno[3]
+          }
+        end
+
+        def self.edit(date, professional, **options)
+          professional=Polycon::Utils::guion(professional)
+          path = Polycon::PATH+"#{professional}"+"/"+"#{date}"+".paf"
+          if(File.exist?(path))
+            turno = show(date, professional).merge(options)
+            file = File.open(PATH+"#{professional}"+"/"+"#{date}"+".paf", 'w')
+            file.puts(turno[:surname])
+            file.puts(turno[:name])
+            file.puts(turno[:phone])
+            if(turno[:notes]!= nil)
+              file.puts(turno[:notes])
+            end
+          return "Se modificó el turno exitosamente."
+        else
+          return "El turno ingresado no existe."
+          
+        end
+      end
+
+
       end
     end
 end

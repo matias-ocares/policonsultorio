@@ -36,7 +36,11 @@ module Polycon
         ]
 
         def call(date:, professional:)
-          warn "TODO: Implementar detalles de un turno con fecha '#{date}' y profesional '#{professional}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          if(Polycon::Utils::polycon_root_exists)
+            Models::Appointment.show(date,professional).each do |clave, valor|
+              puts "#{clave}: #{valor}"
+            end
+          end
         end
       end
 
@@ -128,7 +132,7 @@ module Polycon
         ]
 
         def call(date:, professional:, **options)
-          warn "TODO: Implementar modificación de un turno de la o el profesional '#{professional}' con fecha '#{date}', para cambiarle la siguiente información: #{options}.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          puts Models::Appointment.edit(date, professional, **options)
         end
       end
     end
