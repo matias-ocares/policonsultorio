@@ -111,10 +111,10 @@ module Polycon
         ]
 
         def call(old_date:, new_date:, professional:)
-          warn "TODO: Implementar cambio de fecha de turno con fecha '#{old_date}' para que pase a ser '#{new_date}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          puts Models::Appointment.reschedule(old_date, new_date, professional)
         end
       end
-
+    
       class Edit < Dry::CLI::Command
         desc 'Edit information for an appointments'
 
@@ -132,9 +132,11 @@ module Polycon
         ]
 
         def call(date:, professional:, **options)
-          puts Models::Appointment.edit(date, professional, **options)
+          if(Polycon::Utils::polycon_root_exists)
+            puts Models::Appointment.edit(date, professional, **options)
         end
       end
     end
   end
+end
 end
