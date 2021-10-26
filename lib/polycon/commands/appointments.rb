@@ -55,7 +55,8 @@ module Polycon
         ]
 
         def call(date:, professional:)
-          warn "TODO: Implementar borrado de un turno con fecha '#{date}' y profesional '#{professional}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          professional = Polycon::Utils.guion(professional)
+          puts Models::Appointment.cancel(date, professional)
         end
       end
 
