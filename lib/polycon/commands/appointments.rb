@@ -24,7 +24,6 @@ module Polycon
         end
         end
       end
-
       class Show < Dry::CLI::Command
         desc 'Show details for an appointment'
 
@@ -36,6 +35,7 @@ module Polycon
         ]
 
         def call(date:, professional:)
+          professional = Polycon::Utils.guion(professional)
           if(Polycon::Utils::polycon_root_exists)
             Models::Appointment.show(date,professional).each do |clave, valor|
               puts "#{clave}: #{valor}"
@@ -51,7 +51,7 @@ module Polycon
         option :professional, required: true, desc: 'Full name of the professional'
 
         example [
-          '"2021-09-16 13:00" --professional="Alma Estevez" # Cancels the appointment with Alma Estevez on the specified date and time'
+          '"2021-09-16 13:00000000" --professional="Alma Estevez" # Cancels the appointment with Alma Estevez on the specified date and time'
         ]
 
         def call(date:, professional:)
@@ -111,6 +111,7 @@ module Polycon
         ]
 
         def call(old_date:, new_date:, professional:)
+          professional = Polycon::Utils.guion(professional)
           puts Models::Appointment.reschedule(old_date, new_date, professional)
         end
       end
@@ -132,6 +133,7 @@ module Polycon
         ]
 
         def call(date:, professional:, **options)
+          professional = Polycon::Utils.guion(professional)
           if(Polycon::Utils::polycon_root_exists)
             puts Models::Appointment.edit(date, professional, **options)
         end

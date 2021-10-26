@@ -89,15 +89,16 @@ module Polycon
 
       def self.reschedule(old_date, new_date, professional)
         new_path = Polycon::PATH+"#{professional}"+"/"+"#{new_date}"+".paf"
-        if(File.exist?(new_path))
-          return "El turno para #{new_date} ya se encuentra tomado"
+        old_path = Polycon::PATH+"#{professional}"+"/"+"#{old_date}"+".paf"
+
+        if(!File.exist?(old_path))
+          return "El turno actual #{old_date} para el profesional #{professional} no existe"
         else
-          old_path = Polycon::PATH+"#{professional}"+"/"+"#{old_date}"+".paf"
-          if(File.exist?(old_path))
+          if(!File.exist?(new_path))
             File.rename(old_path, new_path)
             return "Se reprogramó el turno."
           else
-            return "El turno #{old_date} para el profesional #{professional} no existe"
+            return "El turno para #{new_date} ya se encuentra tomado"
           end
         end
 
