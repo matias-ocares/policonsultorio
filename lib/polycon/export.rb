@@ -1,4 +1,5 @@
 require 'erb'
+require 'polycon/models/appointment'
 
 # Build template data class.
 class Export
@@ -8,11 +9,11 @@ class Export
     @desc = desc
     @cost = cost
 
-    @features = [ ]
+    @turnos = [ ]
   end
 
-  def add_feature( feature )
-    @features << feature
+  def add_feature( turno )
+    @turnos << turno
   end
 
   # Support templating of member data.
@@ -22,31 +23,63 @@ class Export
 
   # ...
 
-  def self.export(date)
+  def self.export(date, professional)
 # Create template.
 template = %{
   <html>
-    <head><title>Ruby Toys -- <%= @name %></title></head>
-    <body>
+   
+    <html>
+  <head>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      td, th {
+        border: 1px solid black;
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ruby Study Group</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>08:00</th>
+          <th>08:30</th>
+          <th>09:00</th>
+          <th>09:30</th>
+          <th>10:00</th>
+          <th>10:30</th>
+          <th>11:00</th>
+          <th>11:30</th>
+          <th>12:00</th>
+          <th>12:30</th>
+          <th>13:00</th>
+          <th>13:30</th>
+          <th>14:00</th>
+          <th>14:30</th>
+          <th>15:00</th>
+          <th>15:30</th>
+          <th>16:00</th>
+          <th>16:30</th>
+          <th>17:00</th>
+          <th>17:30</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> <%= @turnos %> </td>
+          <% @turnos.each do |t| %>          
+          <td><%= t %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
 
-      <h1><%= @name %> (<%= @code %>)</h1>
-      <p><%= @desc %></p>
-
-      <ul>
-        <% @features.each do |f| %>
-          <li><b><%= f %></b></li>
-        <% end %>
-      </ul>
-
-      <p>
-        <% if @cost < 10 %>
-          <b>Only <%= @cost %>!!!</b>
-        <% else %>
-           Call for a price, today!
-        <% end %>
-      </p>
-
-    </body>
   </html>
 }.gsub(/^  /, '')
 
@@ -57,11 +90,13 @@ toy = Export.new( "TZ-1002",
                    "Rubysapien",
                    "Geek's Best Friend!  Responds to Ruby commands...",
                    999.95 )
-toy.add_feature("Listens for verbal commands in the Ruby language!")
-toy.add_feature("Ignores Perl, Java, and all C variants.")
-toy.add_feature("Karate-Chop Action!!!")
-toy.add_feature("Matz signature on left leg.")
-toy.add_feature("Gem studded eyes... Rubies, of course!")
+                   
+
+
+lista = Polycon::Models::Appointment.list(professional)
+lista.each do |turno|
+  toy.add_feature(puts turno)
+end
 
 # Produce result.
 

@@ -152,11 +152,11 @@ module Polycon
       option :professional, required: false, desc: 'Full name of the professional'
 
       example [
-        '"2021-09-16" --professional="Alma Estevez" # Exporta todos los turnos para ese día y para ese profesional particular'
+        '"2021-09-16 15:00" --professional="Alma Estevez" # Exporta todos los turnos para ese día y para ese profesional particular'
       ]
 
-      def call(date:)
-        Export.export(date)
+      def call(date:, professional:)
+        Export.export(date, professional)
       end
     end
   end
