@@ -1,4 +1,5 @@
 require 'polycon/models/appointment'
+
 module Polycon
   module Commands
     module Appointments
@@ -139,6 +140,23 @@ module Polycon
           if(Polycon::Utils::polycon_root_exists)
             puts Models::Appointment.edit(date, professional, **options)
         end
+      end
+    end
+
+
+    #COMANDOS ENTREGA 2
+    class ExportDay < Dry::CLI::Command
+      desc 'Exportar appointments por dia'
+
+      argument :date, required: true, desc: 'Full date for the appointments'
+      option :professional, required: false, desc: 'Full name of the professional'
+
+      example [
+        '"2021-09-16" --professional="Alma Estevez" # Exporta todos los turnos para ese día y para ese profesional particular'
+      ]
+
+      def call(date:)
+        Export.export(date)
       end
     end
   end

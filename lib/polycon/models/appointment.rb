@@ -1,5 +1,4 @@
 require 'date'
-require 'erb'
 module Polycon
     module Models
       class Appointment
@@ -133,11 +132,6 @@ module Polycon
          end
        end
       end
-
-      ##-----------------"Entrega 2"--
-
-
-
 
     end
   end 

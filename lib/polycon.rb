@@ -6,6 +6,7 @@ module Polycon
   autoload :Models, 'polycon/models/professional'
   autoload :Professional, 'polycon/models/professional'
   autoload :Appointment, 'polycon/models/appointment'
+  autoload :Export, 'polycon/export'
   
   PATH= "/home/mocares/.polycon/"
 
