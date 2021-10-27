@@ -3,12 +3,9 @@ require 'polycon/models/appointment'
 
 # Build template data class.
 class Export
-  def initialize( code, name, desc, cost )
-    @code = code
-    @name = name
-    @desc = desc
-    @cost = cost
-
+  def initialize( date )
+    @date = date
+   
     @turnos = [ ]
   end
 
@@ -47,32 +44,54 @@ template = %{
         <tr>
           <th>Date</th>
           <th>08:00</th>
-          <th>08:30</th>
           <th>09:00</th>
-          <th>09:30</th>
           <th>10:00</th>
-          <th>10:30</th>
           <th>11:00</th>
-          <th>11:30</th>
           <th>12:00</th>
-          <th>12:30</th>
           <th>13:00</th>
-          <th>13:30</th>
           <th>14:00</th>
-          <th>14:30</th>
           <th>15:00</th>
-          <th>15:30</th>
           <th>16:00</th>
-          <th>16:30</th>
           <th>17:00</th>
-          <th>17:30</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td> <%= @turnos %> </td>
-          <% @turnos.each do |t| %>          
+          <td> <%= @date %> </td>
+          <% @turnos.each do |t| %> 
+            <% if (t.split(" ")[1] == "08:00") %>          
           <td><%= t %></td>
+          <% else %>
+          <td><%= " " %></td>
+          <% end %>
+          <% end %>
+          <% @turnos.each do |t| %> 
+            <% if (t.split(" ")[1] == "09:00") %>          
+          <td><%= t %></td>
+          <% else %>
+          <td><%= " " %></td>
+          <% end %>
+          <% end %>
+          <% @turnos.each do |t| %> 
+            <% if (t.split(" ")[1] == "10:00") %>          
+          <td><%= t %></td>
+          <% else %>
+          <td><%= " " %></td>
+          <% end %>
+          <% end %>
+          <% @turnos.each do |t| %> 
+            <% if (t.split(" ")[1] == "11:00") %>          
+          <td><%= t %></td>
+          <% else %>
+          <td><%= " " %></td>
+          <% end %>
+          <% end %>
+          <% @turnos.each do |t| %> 
+            <% if (t.split(" ")[1] == "12:00") %>          
+          <td><%= t %></td>
+          <% else %>
+          <td><%= " " %></td>
+          <% end %>
           <% end %>
         </tr>
       </tbody>
@@ -86,16 +105,13 @@ template = %{
 rhtml = ERB.new(template)
 
 # Set up template data.
-toy = Export.new( "TZ-1002",
-                   "Rubysapien",
-                   "Geek's Best Friend!  Responds to Ruby commands...",
-                   999.95 )
+toy = Export.new(date)
                    
 
 
 lista = Polycon::Models::Appointment.list(professional)
 lista.each do |turno|
-  toy.add_feature(puts turno)
+  toy.add_feature(turno)
 end
 
 # Produce result.
