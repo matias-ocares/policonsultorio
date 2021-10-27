@@ -70,7 +70,8 @@ module Polycon
         ]
 
         def call(professional:)
-          warn "TODO: Implementar borrado de todos los turnos de la o el profesional '#{professional}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          professional = Polycon::Utils.guion(professional)
+          puts Models::Appointment.cancelall(professional)
         end
       end
 

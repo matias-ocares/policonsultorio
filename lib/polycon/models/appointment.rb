@@ -105,22 +105,33 @@ module Polycon
       end
 
       def self.cancel(date, professional)
-       path = Polycon::PATH+"#{professional}"
-       if(!File.exist?(path))
-        return "El profesional #{professional} no existe."
-       else
-        path = path +"/"+"#{date}"+".paf"
+        path = Polycon::PATH+"#{professional}"
         if(!File.exist?(path))
-          return "El turno #{date} para el profesional #{professional}"
+          return "El profesional #{professional} no existe."
         else
-          File.delete(path)
-          return "Se eliminó el turno correctamente."
+          path = path +"/"+"#{date}"+".paf"
+          if(!File.exist?(path))
+            return "El turno #{date} para el profesional #{professional}"
+          else
+            File.delete(path)
+            return "Se canceló el turno correctamente."
+          end
         end
       end
-      end
 
-
-
+      def self.cancelall(professional)
+        path = Polycon::PATH+"#{professional}"
+        if(!File.exist?(path))
+         return "El profesional #{professional} no existe."
+        else
+         if(Dir.empty?(path))
+           return "El profesional #{professional} no tiene turnos."
+         else
+           FileUtils.rm Dir.glob(path +"/*")
+           return "Se cancelaron todos los turnos para el profesional #{professional}."
+         end
+       end
       end
     end
+  end 
 end
