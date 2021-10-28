@@ -156,7 +156,8 @@ module Polycon
       ]
 
       def call(date:, professional:)
-        Export.export(date, professional)
+        ex = Export.new(date)
+       ex.export(date, professional)
       end
     end
   end

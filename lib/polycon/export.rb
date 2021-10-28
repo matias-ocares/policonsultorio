@@ -5,13 +5,20 @@ require 'polycon/models/appointment'
 class Export
   def initialize( date )
     @date = date
-   
-    @turnos = []
+    #@turnos = []
+    @fulldate= []
+    @name = []
+    @surname = []
+    @phone = []
   
   end
 
-  def add_feature( turno )
-    @turnos << turno
+  def add_feature( date, name, surname, phone )
+    date = date.delete!".paf"
+    @fulldate<< date
+    @name << name
+    @surname << surname
+    @phone << phone
   end
 
   # Support templating of member data.
@@ -21,7 +28,7 @@ class Export
 
   # ...
 
-  def self.export(date, professional)
+  def export(date, professional)
 # Create template.
 template = %{
   <html>
@@ -59,25 +66,25 @@ template = %{
       <tbody>
       <tr>
       <td id="date"> <%= @date %> </td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "08:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "08:00"} %>
       <td headers="date 08" > <%= turno[0] %></td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "09:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "09:00"} %>
       <td headers="date 09" > <%= turno[0] %></td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "10:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "10:00"} %>
       <td headers="date 10" > <%= turno[0] %></td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "11:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "11:00"} %>
       <td headers="date 11" > <%= turno[0] %></td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "12:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "12:00"} %>
       <td headers="date 12" > <%= turno[0] %></td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "13:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "13:00"} %>
       <td headers="date 12" > <%= turno[0] %></td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "14:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "14:00"} %>
       <td headers="date 14" > <%= turno[0] %></td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "15:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "15:00"} %>
       <td headers="date 15" > <%= turno[0] %></td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "16:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "16:00"} %>
       <td headers="date 16" > <%= turno[0] %></td>
-      <% turno= @turnos.select{|t| t.split(" ")[1] == "17:00"} %>
+      <% turno= @fulldate.select{|t| t.split(" ")[1] == "17:00"} %>
       <td headers="date 17" > <%= turno[0] %></td>
       </tr>
       </tbody>
@@ -91,22 +98,20 @@ template = %{
 rhtml = ERB.new(template)
 
 # Set up template data.
-grilla = Export.new(date)
+#grilla = Export.new(date)
                    
-
 
 lista = Polycon::Models::Appointment.showexport(date,professional)
 puts lista.size
-lista.each do |clave, valor|
-  puts "#{clave}: #{valor}"
-end
-lista.each do |turno|
-  grilla.add_feature(turno)
+lista.each do |clave|
+ self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone])
+ #puts clave[:name]
+ #puts clave[:surname]
+ #puts clave[:phone]
 end
 
 # Produce result.
-
-    rhtml.run(grilla.get_binding)
+ rhtml.run(self.get_binding)
 end
 
 end
