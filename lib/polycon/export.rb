@@ -16,7 +16,7 @@ class Export
   def add_feature( date, name, surname, phone )
     date = date.delete!".paf"
     @fulldate<< date
-    @name << name
+    @name << name+" "+surname+" "+phone
     @surname << surname
     @phone << phone
   end
@@ -66,26 +66,34 @@ template = %{
       <tbody>
       <tr>
       <td id="date"> <%= @date %> </td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "08:00"} %>
-      <td headers="date 08" > <%= turno[0] %></td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "09:00"} %>
-      <td headers="date 09" > <%= turno[0] %></td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "10:00"} %>
-      <td headers="date 10" > <%= turno[0] %></td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "11:00"} %>
-      <td headers="date 11" > <%= turno[0] %></td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "12:00"} %>
-      <td headers="date 12" > <%= turno[0] %></td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "13:00"} %>
-      <td headers="date 12" > <%= turno[0] %></td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "14:00"} %>
-      <td headers="date 14" > <%= turno[0] %></td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "15:00"} %>
-      <td headers="date 15" > <%= turno[0] %></td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "16:00"} %>
-      <td headers="date 16" > <%= turno[0] %></td>
-      <% turno= @fulldate.select{|t| t.split(" ")[1] == "17:00"} %>
-      <td headers="date 17" > <%= turno[0] %></td>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "08:00"} %>
+      <% if (turno!=nil)%>
+      <td headers="date 08" > <%= @name[turno] %></td>
+      <% else%>
+      <td headers="date 08" > <%= %></td>
+      <%end%>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "09:00"} %>
+      <% if (turno!=nil)%>
+      <td headers="date 09" > <%= @name[turno]%></td>
+      <% else%>
+      <td headers="date 09" > <%= %></td>
+      <%end%>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "10:00"} %>
+      <td headers="date 10" > <%=  %></td>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "11:00"} %>
+      <td headers="date 11" > <%= %></td>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "12:00"} %>
+      <td headers="date 12" > <%=  %></td>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "13:00"} %>
+      <td headers="date 12" > <%=  %></td>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "14:00"} %>
+      <td headers="date 14" > <%=  %></td>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "15:00"} %>
+      <td headers="date 15" > <%=  %></td>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "16:00"} %>
+      <td headers="date 16" > <%= %></td>
+      <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "17:00"} %>
+      <td headers="date 17" > <%=  %></td>
       </tr>
       </tbody>
     </table>
