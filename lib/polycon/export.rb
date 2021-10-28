@@ -43,57 +43,42 @@ template = %{
       <thead>
         <tr>
           <th>Date</th>
-          <th>08:00</th>
-          <th>09:00</th>
-          <th>10:00</th>
-          <th>11:00</th>
-          <th>12:00</th>
-          <th>13:00</th>
-          <th>14:00</th>
-          <th>15:00</th>
-          <th>16:00</th>
-          <th>17:00</th>
+          <th id="08">08:00</th>
+          <th id="09">09:00</th>
+          <th id="10">10:00</th>
+          <th id="11">11:00</th>
+          <th id="12">12:00</th>
+          <th id="13">13:00</th>
+          <th id="14">14:00</th>
+          <th id="15">15:00</th>
+          <th id="16">16:00</th>
+          <th id="17">17:00</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td> <%= @date %> </td>
-          <% @turnos.each do |t| %> 
-            <% if (t.split(" ")[1] == "08:00") %>          
-          <td><%= t %></td>
-          <% else %>
-          <td><%= " " %></td>
-          <% end %>
-          <% end %>
-          <% @turnos.each do |t| %> 
-            <% if (t.split(" ")[1] == "09:00") %>          
-          <td><%= t %></td>
-          <% else %>
-          <td><%= " " %></td>
-          <% end %>
-          <% end %>
-          <% @turnos.each do |t| %> 
-            <% if (t.split(" ")[1] == "10:00") %>          
-          <td><%= t %></td>
-          <% else %>
-          <td><%= " " %></td>
-          <% end %>
-          <% end %>
-          <% @turnos.each do |t| %> 
-            <% if (t.split(" ")[1] == "11:00") %>          
-          <td><%= t %></td>
-          <% else %>
-          <td><%= " " %></td>
-          <% end %>
-          <% end %>
-          <% @turnos.each do |t| %> 
-            <% if (t.split(" ")[1] == "12:00") %>          
-          <td><%= t %></td>
-          <% else %>
-          <td><%= " " %></td>
-          <% end %>
-          <% end %>
-        </tr>
+      <tr>
+      <td id="date"> <%= @date %> </td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "08:00"} %>
+      <td headers="date 08" > <%= turno[0] %></td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "09:00"} %>
+      <td headers="date 09" > <%= turno[0] %></td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "10:00"} %>
+      <td headers="date 10" > <%= turno[0] %></td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "11:00"} %>
+      <td headers="date 11" > <%= turno[0] %></td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "12:00"} %>
+      <td headers="date 12" > <%= turno[0] %></td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "13:00"} %>
+      <td headers="date 12" > <%= turno[0] %></td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "14:00"} %>
+      <td headers="date 14" > <%= turno[0] %></td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "15:00"} %>
+      <td headers="date 15" > <%= turno[0] %></td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "16:00"} %>
+      <td headers="date 16" > <%= turno[0] %></td>
+      <% turno= @turnos.select{|t| t.split(" ")[1] == "17:00"} %>
+      <td headers="date 17" > <%= turno[0] %></td>
+      </tr>
       </tbody>
     </table>
   </body>
