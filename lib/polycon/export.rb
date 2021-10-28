@@ -6,7 +6,8 @@ class Export
   def initialize( date )
     @date = date
    
-    @turnos = [ ]
+    @turnos = []
+  
   end
 
   def add_feature( turno )
@@ -90,18 +91,22 @@ template = %{
 rhtml = ERB.new(template)
 
 # Set up template data.
-toy = Export.new(date)
+grilla = Export.new(date)
                    
 
 
-lista = Polycon::Models::Appointment.list(professional)
+lista = Polycon::Models::Appointment.showexport(date,professional)
+puts lista.size
+lista.each do |clave, valor|
+  puts "#{clave}: #{valor}"
+end
 lista.each do |turno|
-  toy.add_feature(turno)
+  grilla.add_feature(turno)
 end
 
 # Produce result.
 
-    rhtml.run(toy.get_binding)
+    rhtml.run(grilla.get_binding)
 end
 
 end
