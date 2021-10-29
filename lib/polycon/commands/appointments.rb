@@ -156,14 +156,18 @@ module Polycon
         '"2021-09-16 15:00" --professional="Alma Estevez" # Exporta todos los turnos para ese día y para ese profesional particular'
       ]
 
-      def call(date:, professional:)
-        professional=Polycon::Utils::guion(professional)
-        path = Polycon::PATH+"#{professional}"
-        if(File.exist?(path))
-          ex = Export.new(date)
-          puts ex.export(date, professional)
+      def call(date:, professional:nil)     
+        if(professional== nil)
+          puts "No profe"
         else
-          puts "No existe el profesional #{professional}"
+          professional=Polycon::Utils::guion(professional)
+          path = Polycon::PATH+"#{professional}"
+          if(File.exist?(path))
+            ex = Export.new(date)
+            puts ex.export(date, professional)
+          else
+            puts "No existe el profesional #{professional}"
+          end
         end
       end
     end

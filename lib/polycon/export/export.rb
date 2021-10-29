@@ -27,13 +27,12 @@ class Export
   end
 
   # ...
-
-  def export(date, professional)
-# Create template.
-template = %{
-  <html>
-   
+  def get_template()
+  # Create template.
+    return template = %{
     <html>
+   
+      <html>
   <head>
     <style>
       table {
@@ -134,15 +133,19 @@ template = %{
 
   </html>
 }.gsub(/^  /, '')
+end
 
-rhtml = ERB.new(template)
+def export(date, professional)
 
-# Set up template data.
+
+  rhtml = ERB.new(get_template)
+
+  # Set up template data.
                    
 
-lista = Polycon::Models::Appointment.showexport(date,professional)
-lista.each do |clave|
- self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
+  lista = Polycon::Models::Appointment.showexport(date,professional)
+  lista.each do |clave|
+  self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
 end
 
 # Produce result.
