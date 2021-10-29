@@ -145,15 +145,40 @@ def export(date, professional)
 
   lista = Polycon::Models::Appointment.showexport(date,professional)
   lista.each do |clave|
-  self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
-end
+    self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
+  end
 
 # Produce result.
- rhtml.run(self.get_binding)
- File.open(Polycon::PATH+"reporte.html", "w") do |fichero|
-  fichero.write(rhtml.result(self.get_binding))
+  rhtml.run(self.get_binding)
+  File.open(Polycon::PATH+"reporte.html", "w") do |fichero|
+    fichero.write(rhtml.result(self.get_binding))
+  end
   return "Se generó el reporte solicitado en el directorio #{Polycon::PATH}"
-end
-end
+ 
+  end
 
+  def export(date)
+
+
+    rhtml = ERB.new(get_template)
+  
+    # Set up template data.
+     lista =[]                
+    Dir.foreach(Polycon::PATH) do |prof|
+      lista << Polycon::Models::Appointment.showexport(date,prof)
+    end
+    puts lista.size    
+    lista.each do |other|
+      other.each do |clave|
+      self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
+    end end
+  
+  # Produce result.
+    rhtml.run(self.get_binding)
+    File.open(Polycon::PATH+"reporte.html", "w") do |fichero|
+      fichero.write(rhtml.result(self.get_binding))
+    end
+    return "Se generó el reporte solicitado en el directorio #{Polycon::PATH}"
+   
+    end
 end

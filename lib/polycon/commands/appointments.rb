@@ -159,6 +159,8 @@ module Polycon
       def call(date:, professional:nil)     
         if(professional== nil)
           puts "No profe"
+            ex = Export.new(date)
+            puts ex.export(date)
         else
           professional=Polycon::Utils::guion(professional)
           path = Polycon::PATH+"#{professional}"

@@ -149,6 +149,7 @@ module Polycon
          turnos<<unTurno
       end
     end
+    puts turnos
     return turnos
       end
     end
