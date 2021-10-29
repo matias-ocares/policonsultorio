@@ -1,4 +1,5 @@
 require 'polycon/models/appointment'
+require 'polycon/export/export'
 
 module Polycon
   module Commands
@@ -139,9 +140,9 @@ module Polycon
           professional = Polycon::Utils.guion(professional)
           if(Polycon::Utils::polycon_root_exists)
             puts Models::Appointment.edit(date, professional, **options)
+          end
         end
       end
-    end
 
 
     #COMANDOS ENTREGA 2
@@ -162,10 +163,32 @@ module Polycon
           ex = Export.new(date)
           puts ex.export(date, professional)
         else
-          puts "No existe"
+          puts "No existe el profesional #{professional}"
         end
       end
     end
+
+    class ExportWeek < Dry::CLI::Command
+      desc 'Exportar appointments por semana'
+
+      argument :date, required: true, desc: 'Full date for the appointments'
+      option :professional, required: false, desc: 'Full name of the professional'
+
+      example [
+        '"2021-09-16 15:00" --professional="Alma Estevez" # Exporta todos los turnos para ese día y para ese profesional particular'
+      ]
+
+      def call(date:, professional:)
+        professional=Polycon::Utils::guion(professional)
+        path = Polycon::PATH+"#{professional}"
+        if(File.exist?(path))
+          ex = Export.new(date)
+          puts ex.export(date, professional)
+        else
+          puts "No existe el profesional #{professional}"
+        end
+      end
+    end
+    end
   end
-end
 end

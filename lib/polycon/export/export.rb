@@ -13,10 +13,10 @@ class Export
   
   end
 
-  def add_feature( date, name, surname, phone )
+  def add_feature( date, name, surname, phone, professional )
     date = date.delete!".paf"
     @fulldate<< date
-    @name << name+" "+surname+" "+phone
+    @name << "Name: "+name+" Surname: "+surname+" - Phone: "+phone+" Professional: "+professional
     @surname << surname
     @phone << phone
   end
@@ -46,7 +46,7 @@ template = %{
     </style>
   </head>
   <body>
-    <h1>Ruby Study Group</h1>
+    <h1>Grilla de Turnos</h1>
     <table>
       <thead>
         <tr>
@@ -138,16 +138,11 @@ template = %{
 rhtml = ERB.new(template)
 
 # Set up template data.
-#grilla = Export.new(date)
                    
 
 lista = Polycon::Models::Appointment.showexport(date,professional)
-puts lista.size
 lista.each do |clave|
- self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone])
- #puts clave[:name]
- #puts clave[:surname]
- #puts clave[:phone]
+ self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
 end
 
 # Produce result.
