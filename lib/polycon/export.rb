@@ -79,21 +79,53 @@ template = %{
       <td headers="date 09" > <%= %></td>
       <%end%>
       <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "10:00"} %>
-      <td headers="date 10" > <%=  %></td>
+      <% if (turno!=nil)%>
+      <td headers="date 10" > <%= @name[turno] %></td>
+      <% else%>
+      <td headers="date 10" > <%= %></td>
+      <%end%>
       <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "11:00"} %>
+      <% if (turno!=nil)%>
+      <td headers="date 11" > <%= @name[turno]%></td>
+      <% else%>
       <td headers="date 11" > <%= %></td>
+      <%end%>
       <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "12:00"} %>
-      <td headers="date 12" > <%=  %></td>
+      <% if (turno!=nil)%>
+      <td headers="date 12" > <%= @name[turno] %></td>
+      <% else%>
+      <td headers="date 12" > <%= %></td>
+      <%end%>
       <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "13:00"} %>
-      <td headers="date 12" > <%=  %></td>
+      <% if (turno!=nil)%>
+      <td headers="date 13" > <%=  @name[turno]%></td>
+      <% else%>
+      <td headers="date 13" > <%= %></td>
+      <%end%>
       <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "14:00"} %>
-      <td headers="date 14" > <%=  %></td>
+      <% if (turno!=nil)%>
+      <td headers="date 14" > <%= @name[turno] %></td>
+      <% else%>
+      <td headers="date 14" > <%= %></td>
+      <%end%>
       <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "15:00"} %>
-      <td headers="date 15" > <%=  %></td>
+      <% if (turno!=nil)%>
+      <td headers="date 15" > <%= @name[turno] %></td>
+      <% else%>
+      <td headers="date 15" > <%= %></td>
+      <%end%>
       <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "16:00"} %>
+      <% if (turno!=nil)%>
+      <td headers="date 16" > <%= @name[turno]%></td>
+      <% else%>
       <td headers="date 16" > <%= %></td>
+      <%end%>
       <% turno= @fulldate.find_index{|t| t.split(" ")[1] == "17:00"} %>
-      <td headers="date 17" > <%=  %></td>
+      <% if (turno!=nil)%>
+      <td headers="date 17" > <%= @name[turno] %></td>
+      <% else%>
+      <td headers="date 17" > <%= %></td>
+      <%end%>
       </tr>
       </tbody>
     </table>
@@ -120,6 +152,10 @@ end
 
 # Produce result.
  rhtml.run(self.get_binding)
+ File.open(Polycon::PATH+"reporte.html", "w") do |fichero|
+  fichero.write(rhtml.result(self.get_binding))
+  return "Se generó el reporte solicitado en el directorio #{Polycon::PATH}"
+end
 end
 
 end

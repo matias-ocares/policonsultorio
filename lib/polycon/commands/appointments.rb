@@ -156,8 +156,14 @@ module Polycon
       ]
 
       def call(date:, professional:)
-        ex = Export.new(date)
-       ex.export(date, professional)
+        professional=Polycon::Utils::guion(professional)
+        path = Polycon::PATH+"#{professional}"
+        if(File.exist?(path))
+          ex = Export.new(date)
+          puts ex.export(date, professional)
+        else
+          puts "No existe"
+        end
       end
     end
   end
