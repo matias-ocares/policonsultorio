@@ -167,11 +167,12 @@ def export(date, professional)
     Dir.foreach(Polycon::PATH) do |prof|
       lista << Polycon::Models::Appointment.showexport(date,prof)
     end
-    puts lista.size    
+    #INTENTO JUNTAR MISMAS FECHAS puts lista.sort{|k,p| k["phone"]==p["phone"]}  
     lista.each do |other|
       other.each do |clave|
       self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
-    end end
+    end
+  end
   
   # Produce result.
     rhtml.run(self.get_binding)

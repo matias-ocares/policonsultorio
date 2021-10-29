@@ -151,7 +151,6 @@ module Polycon
         end
       end
     end
-    puts turnos
     return turnos
       end
     end
