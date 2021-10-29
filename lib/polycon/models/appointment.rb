@@ -136,6 +136,7 @@ module Polycon
       #Entrega 2 ------
       def self.showexport(date, professional)
         turnos=Array.new
+        if (Dir.exist?(PATH+"#{professional}"))
         Dir.foreach(PATH+"#{professional}") do|t|
         if(File.basename(t).include? "#{date}" )
          turno=File.read(PATH+"#{professional}"+"/"+t).split("\n")
@@ -147,6 +148,7 @@ module Polycon
           notes:turno[3]
          }
          turnos<<unTurno
+        end
       end
     end
     puts turnos
