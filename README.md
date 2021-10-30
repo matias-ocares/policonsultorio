@@ -1,5 +1,21 @@
 # POLYCONSULTORIO
-## Estado del proyecto al 9/10/2021: Primer Entrega
+## SEGUNDA ENTREGA: Estado del proyecto al 30/10/2021.
+### Correcciones de primer entrega:
+
+* Constante PATH se calcular a partir de método home de Dir.
+* Controla la creación de Professional con caracteres vaciós.
+* Si no existe directorio .polycon, lo crea.
+* Controla el renombre de Professional por un nombre que ya esté en uso.
+
+### Funcionalidades implementadas a la fecha:
+#### Pendientes de primer entrega:
+* Show, reschedule, edit, cancel, and cancel all appointments.
+#### Segunda entrega:
+* Hola
+
+# -----------------------------------------------------------
+
+## PRIMER ENTREGA: Estado del proyecto al 9/10/2021.
 
 ### Estructura del Proyecto:
 Dentro del directorio lib/polycon se encuentra Commands (ya provisto por la cátedra), Models (donde se declaran todas las clases del modelo, que hasta el momento son Appointment y Professional) y el archvivo utils.rb donde se ubican métodos que serán de utilidad para los diferentes módulos del proyecto.
