@@ -31,15 +31,15 @@ Se desarrollaron la totalidad de los requerimientos solicitados para la segunda 
 * El archivo con la grilla de turnos se crea en formato html y se guarda dentro del directorio *.polycon*.
 
 ### Comandos implementados para la segunda entrega:
-ruby bin/polycon appointments show DATE --professional=""
-ruby bin/polycon appointments reschedule OLD_DATE NEW_DATE --professional=""
-ruby bin/polycon appointments edit DATE --professional="" --name="new name"
-ruby bin/polycon appointments cancel DATE --professional=""
-ruby bin/polycon appointments cancel-all PROFESSIONAL
+ruby bin/polycon appointments show DATE --professional=""  
+ruby bin/polycon appointments reschedule OLD_DATE NEW_DATE --professional=""  
+ruby bin/polycon appointments edit DATE --professional="" --name="new name"  
+ruby bin/polycon appointments cancel DATE --professional=""  
+ruby bin/polycon appointments cancel-all PROFESSIONAL  
 
-ruby bin/polycon appointments exportday DATE
-ruby bin/polycon appointments exportday DATE --professional=""
-ruby bin/polycon appointments exportweek DATE
+ruby bin/polycon appointments exportday DATE  
+ruby bin/polycon appointments exportday DATE --professional=""  
+ruby bin/polycon appointments exportweek DATE  
 ruby bin/polycon appointments exportweek DATE --professional=""
 
 
