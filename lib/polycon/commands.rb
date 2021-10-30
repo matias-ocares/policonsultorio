@@ -4,6 +4,7 @@ module Polycon
     autoload :Appointments, 'polycon/commands/appointments'
     autoload :Version, 'polycon/commands/version'
     autoload :Export, 'polycon/export/export'
+    autoload :Export_week, 'polycon/export/exportweek'
     
     extend Dry::CLI::Registry
 

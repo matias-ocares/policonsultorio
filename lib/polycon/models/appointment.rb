@@ -152,7 +152,30 @@ module Polycon
       end
     end
     return turnos
+    end
+
+    def self.showexportweek(week, professional)
+      turnos=Array.new
+      if (Dir.exist?(PATH+"#{professional}"))
+      week.each do |day|
+        Dir.foreach(PATH+"#{professional}") do|t|
+        if(File.basename(t).include? day )
+        turno=File.read(PATH+"#{professional}"+"/"+t).split("\n")
+        unTurno={ date: t,
+          professional: professional,
+          name:turno[0],
+          surname:turno[1],
+          phone:turno[2],
+          notes:turno[3]
+        }
+        turnos<<unTurno
+        end
       end
+    end
+  end
+  return turnos
+    end
+
     end
   end 
 end
