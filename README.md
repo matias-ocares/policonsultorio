@@ -1,10 +1,10 @@
 # POLYCONSULTORIO
 ## SEGUNDA ENTREGA: Estado del proyecto al 30/10/2021.
 ### Correcciones de primer entrega:
-Se realizaron las mejoras y correciones indicadas en la primer entrega:
+Se realizaron las mejoras y correcciones indicadas en la primer entrega:
 
 * Constante PATH se calcular a partir de método home de Dir.
-* Controla la creación de Professional con caracteres vaciós.
+* Controla la creación de Professional con caracteres vacíos.
 * Si no existe directorio .polycon, lo crea.
 * Controla el renombre de Professional por un nombre que ya esté en uso.
 
