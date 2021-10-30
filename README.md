@@ -3,9 +3,9 @@
 ### Correcciones de primer entrega:
 Se realizaron las mejoras y correcciones indicadas en la primer entrega:
 
-* Constante PATH se calcular a partir de método home de Dir.
+* Constante PATH se calcular a partir de método **home** de Dir.
 * Controla la creación de Professional con caracteres vacíos.
-* Si no existe directorio .polycon, lo crea.
+* Si no existe directorio *.polycon*, lo crea.
 * Controla el renombre de Professional por un nombre que ya esté en uso.
 
 ### Funcionalidades implementadas a la fecha:
@@ -13,8 +13,19 @@ Se realizaron las mejoras y correcciones indicadas en la primer entrega:
 Se terminaron de desarrollar los requerimientos planteados en la primer entrega que habían quedado pendientes:
 * Show, reschedule, edit, cancel, and cancel all appointments.
 #### Segunda entrega:
-* Hola
+* Listar turnos en un día particular para todos los profesionales.
+* Listar turnos en un día particular para un profesional particular.
+* Listar turnos en una semana a partir de una fecha ingresada para todos los profesionales.
+* Listar turnos en una semana y un profesional a partir de una fecha y profesional ingresados.
 
+### Decisiones de diseño:
+* Para este nuevo requerimiento nos permitieron asumir que los turnos se dan siempre respetando el horario de comienzo de cada bloque. En este caso decidí manejar turno de una hora, desde las 8:00 hasta las 17:00 hs inclusive.
+
+* Con el primer punto mencionado, también podeos asumir que los turnos para un mismo profesional nunca se van a superponer, ya que siempre serán de una hora de duracción arrancando en una hora puntal.
+
+* Para el manejo de comandos, creé dos nuevos comandos **exportday** y **exportweek**. Ambos comandos tienen como argumento requerido la fecha, y como opcional el profesional.
+
+* El archivo con la grilla de turnos se crea en formato html y se guarda dentro del directorio *.polycon*.
 
 ## PRIMER ENTREGA: Estado del proyecto al 9/10/2021.
 
