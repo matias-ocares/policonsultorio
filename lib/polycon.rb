@@ -8,7 +8,7 @@ module Polycon
   autoload :Appointment, 'polycon/models/appointment'
   autoload :Export, 'polycon/export'
   
-  PATH= "/home/mocares/.polycon/"
+  PATH = dir = Dir.home()+"/.polycon/"
 
   # Agregar aquí cualquier autoload que sea necesario para que se cargue las clases y
   # módulos del modelo de datos.
