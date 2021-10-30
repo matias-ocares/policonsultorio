@@ -1,6 +1,7 @@
 # POLYCONSULTORIO
 ## SEGUNDA ENTREGA: Estado del proyecto al 30/10/2021.
 ### Correcciones de primer entrega:
+Se realizaron las mejoras y correciones indicadas en la primer entrega:
 
 * Constante PATH se calcular a partir de método home de Dir.
 * Controla la creación de Professional con caracteres vaciós.
@@ -9,11 +10,11 @@
 
 ### Funcionalidades implementadas a la fecha:
 #### Pendientes de primer entrega:
+Se terminaron de desarrollar los requerimientos planteados en la primer entrega:
 * Show, reschedule, edit, cancel, and cancel all appointments.
 #### Segunda entrega:
 * Hola
 
-# -----------------------------------------------------------
 
 ## PRIMER ENTREGA: Estado del proyecto al 9/10/2021.
 
