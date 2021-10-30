@@ -135,7 +135,21 @@ class Export
 }.gsub(/^  /, '')
 end
 
-def export(date, professional)
+def add_feature_all( date, name, surname, phone, professional )
+  date = date.delete!".paf"
+  index = @fulldate.find_index{|val| val == date}
+  if(index!=nil)
+    dato = "\n Name: "+name+" Surname: "+surname+" - Phone: "+phone+" Professional: "+professional
+    @name[index]=@name[index]+dato
+  else
+    @fulldate<< date
+    @name << "Name: "+name+" Surname: "+surname+" - Phone: "+phone+" Professional: "+professional
+    @surname << surname
+    @phone << phone
+  end
+end
+
+def exportprof(date, professional)
 
 
   rhtml = ERB.new(get_template)
@@ -170,7 +184,7 @@ def export(date, professional)
     #INTENTO JUNTAR MISMAS FECHAS puts lista.sort{|k,p| k["phone"]==p["phone"]}  
     lista.each do |other|
       other.each do |clave|
-      self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
+      self.add_feature_all(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
     end
   end
   

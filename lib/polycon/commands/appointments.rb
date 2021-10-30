@@ -166,7 +166,7 @@ module Polycon
           path = Polycon::PATH+"#{professional}"
           if(File.exist?(path))
             ex = Export.new(date)
-            puts ex.export(date, professional)
+            puts ex.exportprof(date, professional)
           else
             puts "No existe el profesional #{professional}"
           end
