@@ -186,6 +186,10 @@ module Polycon
       def call(date:, professional:nil)
         date = Polycon::Utils::get_monday(date)
         week = Polycon::Utils::get_array_week(date)
+        if(professional== nil)
+          ex = Export_week.new(week)
+          puts ex.export(week)
+      else
         professional=Polycon::Utils::guion(professional)
         path = Polycon::PATH+"#{professional}"
         if(File.exist?(path))
@@ -195,7 +199,7 @@ module Polycon
           puts "No existe el profesional #{professional}"
         end
       end
-
+    end
     end
     end
   end

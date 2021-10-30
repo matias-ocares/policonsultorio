@@ -175,7 +175,7 @@ def exportprof(week, professional)
  
   end
 
-  def export(date)
+  def export(week)
 
 
     rhtml = ERB.new(get_template)
@@ -183,7 +183,7 @@ def exportprof(week, professional)
     # Set up template data.
      lista =[]                
     Dir.foreach(Polycon::PATH) do |prof|
-      lista << Polycon::Models::Appointment.showexport(date,prof)
+      lista << Polycon::Models::Appointment.showexportweek(week,prof)
     end
     #INTENTO JUNTAR MISMAS FECHAS puts lista.sort{|k,p| k["phone"]==p["phone"]}  
     lista.each do |other|
