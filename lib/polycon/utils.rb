@@ -2,7 +2,12 @@ module Polycon
     module Utils
 
         def self.polycon_root_exists
-            Dir.exist?(Polycon::PATH)
+            if( Dir.exist?(Polycon::PATH))
+              return true
+            else
+              Dir.mkdir(Polycon::PATH)
+              return true
+            end
         end
 
         def self.professional_exists(name)
