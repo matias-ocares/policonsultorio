@@ -26,6 +26,8 @@ Se desarrollaron la totalidad de los requerimientos solicitados para la segunda 
 
 * Para el manejo de comandos, creé dos nuevos comandos **exportday** y **exportweek**. Ambos comandos tienen como argumento requerido la fecha, y como opcional el profesional.
 
+* Para la creación de la grilla hice uso de la librería ERB.
+
 * Para la grilla semanal, a partir de la fecha que se ingresa por comando, se calcula el lunes previo y desde ese lunes se calculan los 5 días siguientes. La grilla se forma de lunes a viernes. Para este cálculo se crearon  2 métodos en el archivo *utils*: **get_monday** y **get_array_week**.
 
 * El archivo con la grilla de turnos se crea en formato html y se guarda dentro del directorio *.polycon*.
