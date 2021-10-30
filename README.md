@@ -10,7 +10,7 @@ Se realizaron las mejoras y correcciones indicadas en la primer entrega:
 
 ### Funcionalidades implementadas a la fecha:
 #### Pendientes de primer entrega:
-Se terminaron de desarrollar los requerimientos planteados en la primer entrega:
+Se terminaron de desarrollar los requerimientos planteados en la primer entrega que habían quedado pendientes:
 * Show, reschedule, edit, cancel, and cancel all appointments.
 #### Segunda entrega:
 * Hola
