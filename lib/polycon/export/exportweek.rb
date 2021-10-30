@@ -168,10 +168,11 @@ def exportprof(week, professional)
 
 # Produce result.
   rhtml.run(self.get_binding)
-  File.open(Polycon::PATH+"reporte.html", "w") do |fichero|
+  reporte ="reporte"+rand(999).to_s+".html"
+  File.open(Polycon::PATH+reporte, "w") do |fichero|
     fichero.write(rhtml.result(self.get_binding))
   end
-  return "Se generó el reporte solicitado en el directorio #{Polycon::PATH}"
+  return "Se generó el reporte solicitado con nombre: "+reporte+" en el directorio #{Polycon::PATH}"
  
   end
 
@@ -194,10 +195,11 @@ def exportprof(week, professional)
   
   # Produce result.
     rhtml.run(self.get_binding)
-    File.open(Polycon::PATH+"reporte.html", "w") do |fichero|
+    reporte ="reporte"+rand(999).to_s+".html"
+    File.open(Polycon::PATH+reporte, "w") do |fichero|
       fichero.write(rhtml.result(self.get_binding))
     end
-    return "Se generó el reporte solicitado en el directorio #{Polycon::PATH}"
+    return "Se generó el reporte solicitado con nombre: "+reporte+" en el directorio #{Polycon::PATH}"
    
     end
 end

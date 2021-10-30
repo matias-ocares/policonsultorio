@@ -20,9 +20,9 @@ Se desarrollaron la totalidad de los requerimientos solicitados para la segunda 
 * Listar turnos en una semana y un profesional a partir de una fecha y profesional ingresados.
 
 ### Decisiones de diseño:
-* Para este nuevo requerimiento nos permitieron asumir que los turnos se dan siempre respetando el horario de comienzo de cada bloque. En este caso decidí manejar turno de una hora, desde las 8:00 hasta las 17:00 hs inclusive.
+* Para los nuevos requerimientos nos permitieron asumir que los turnos se dan siempre respetando el horario de comienzo de cada bloque. En este caso decidí manejar turnos de una hora, desde las 8:00 hasta las 17:00 hs inclusive.
 
-* Con el primer punto mencionado, también podeos asumir que los turnos para un mismo profesional nunca se van a superponer, ya que siempre serán de una hora de duracción arrancando en una hora puntal.
+* A partir del primer punto mencionado, también podemos asumir que los turnos para un mismo profesional nunca se van a superponer, ya que siempre serán de una hora de duracción arrancando en una hora puntal.
 
 * Para el manejo de comandos, creé dos nuevos comandos **exportday** y **exportweek**. Ambos comandos tienen como argumento requerido la fecha, y como opcional el profesional.
 
