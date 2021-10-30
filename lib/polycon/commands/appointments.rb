@@ -39,8 +39,16 @@ module Polycon
         def call(date:, professional:)
           professional = Polycon::Utils.guion(professional)
           if(Polycon::Utils::polycon_root_exists)
-            Models::Appointment.show(date,professional).each do |clave, valor|
-              puts "#{clave}: #{valor}"
+            if(Polycon::Utils::professional_exists(professional))
+              if(File.exist?(PATH+"#{professional}"+"/"+"#{date}"+".paf"))
+                Models::Appointment.show(date,professional).each do |clave, valor|
+                  puts "#{clave}: #{valor}"
+                end
+              else
+                puts "El turno ingresado no existe"
+              end
+            else
+              puts "El profesional #{professional} no existe"
             end
           end
         end
@@ -116,7 +124,11 @@ module Polycon
 
         def call(old_date:, new_date:, professional:)
           professional = Polycon::Utils.guion(professional)
-          puts Models::Appointment.reschedule(old_date, new_date, professional)
+          if(Polycon::Utils.professional_exists(professional))           
+            puts Models::Appointment.reschedule(old_date, new_date, professional)
+          else
+            puts "El profesional #{professional} no existe."
+          end
         end
       end
     

@@ -3,7 +3,7 @@
 ### Correcciones de primer entrega:
 Se realizaron las mejoras y correcciones indicadas en la primer entrega:
 
-* Constante PATH se calcular a partir de método **home** de Dir.
+* Constante PATH se calcula a partir de método **home** de Dir.
 * Controla la creación de Professional con caracteres vacíos.
 * Si no existe directorio *.polycon*, lo crea.
 * Controla el renombre de Professional por un nombre que ya esté en uso.
@@ -14,21 +14,34 @@ Se terminaron de desarrollar los requerimientos planteados en la primer entrega 
 * Show, reschedule, edit, cancel, and cancel all appointments.
 #### Segunda entrega:
 Se desarrollaron la totalidad de los requerimientos solicitados para la segunda entrega:
-* Listar turnos en un día particular para todos los profesionales.
-* Listar turnos en un día particular para un profesional particular.
-* Listar turnos en una semana a partir de una fecha ingresada para todos los profesionales.
-* Listar turnos en una semana y un profesional a partir de una fecha y profesional ingresados.
+* Crear grilla turnos en un día particular para todos los profesionales.
+* Crear grilla turnos en un día particular para un profesional particular.
+* Crear grilla turnos en una semana a partir de una fecha ingresada para todos los profesionales.
+* Crear grilla turnos en una semana y un profesional a partir de una fecha y profesional ingresados.
 
 ### Decisiones de diseño:
 * Para los nuevos requerimientos nos permitieron asumir que los turnos se dan siempre respetando el horario de comienzo de cada bloque. En este caso decidí manejar turnos de una hora, desde las 8:00 hasta las 17:00 hs inclusive.
 
-* A partir del primer punto mencionado, también podemos asumir que los turnos para un mismo profesional nunca se van a superponer, ya que siempre serán de una hora de duracción arrancando en una hora puntal.
+* A partir del primer punto mencionado, también podemos asumir que los turnos para un mismo profesional nunca se van a superponer, ya que siempre serán de una hora de duracción arrancando en una hora puntual.
 
 * Para el manejo de comandos, creé dos nuevos comandos **exportday** y **exportweek**. Ambos comandos tienen como argumento requerido la fecha, y como opcional el profesional.
 
 * Para la grilla semanal, a partir de la fecha que se ingresa por comando, se calcula el lunes previo y desde ese lunes se calculan los 5 días siguientes. La grilla se forma de lunes a viernes. Para este cálculo se crearon  2 métodos en el archivo *utils*: **get_monday** y **get_array_week**.
 
 * El archivo con la grilla de turnos se crea en formato html y se guarda dentro del directorio *.polycon*.
+
+### Comandos implementados para la segunda entrega:
+ruby bin/polycon appointments show DATE --professional=""
+ruby bin/polycon appointments reschedule OLD_DATE NEW_DATE --professional=""
+ruby bin/polycon appointments edit DATE --professional="" --name="new name"
+ruby bin/polycon appointments cancel DATE --professional=""
+ruby bin/polycon appointments cancel-all PROFESSIONAL
+
+ruby bin/polycon appointments exportday DATE
+ruby bin/polycon appointments exportday DATE --professional=""
+ruby bin/polycon appointments exportweek DATE
+ruby bin/polycon appointments exportweek DATE --professional=""
+
 
 ## PRIMER ENTREGA: Estado del proyecto al 9/10/2021.
 
