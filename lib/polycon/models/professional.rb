@@ -21,11 +21,15 @@ module Polycon
         def self.rename(old_name, new_name)
           old_name = Polycon::Utils::guion (old_name)
           new_name = Polycon::Utils::guion (new_name)
-          if Polycon::Utils::professional_exists(old_name)
-            File.rename(Polycon::PATH+"#{old_name}",Polycon::PATH+"#{new_name}")
-            return true
+          if(Polycon::Utils::professional_exists(new_name))
+            return "El nuevo nombre de profesional ya está en uso."
+          else
+            if Polycon::Utils::professional_exists(old_name)
+              File.rename(Polycon::PATH+"#{old_name}",Polycon::PATH+"#{new_name}")
+              return "Se modificó el nombre del profesional correctamente."
+            end
+            return "El profesional que intenta modificar no existe."
           end
-          return false
         end
 
         def self.list

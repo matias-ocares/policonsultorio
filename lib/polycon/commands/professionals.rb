@@ -90,12 +90,7 @@ module Polycon
 
         def call(old_name:, new_name:, **)
           if(Polycon::Utils::polycon_root_exists)
-            rename = Models::Professional.rename(old_name, new_name)
-            if(rename)
-              warn "Se modificó el profesional correctamente."
-            else
-              warn "El profesional #{old_name} no existe."
-            end
+            puts Models::Professional.rename(old_name, new_name)
           else
             warn "El directorio Polycon no existe"
           end
