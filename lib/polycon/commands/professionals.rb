@@ -12,6 +12,9 @@ module Polycon
         ]
 
         def call(name:, **)
+          if(name.empty?)
+            warn "Ingreso un campo vacío."
+          else
           if(Polycon::Utils::polycon_root_exists)
             crear = Models::Professional.create(name)
             if(crear)
@@ -22,6 +25,7 @@ module Polycon
           else
             warn "El directorio Polycon no existe"
           end
+        end
         end
       end
 
