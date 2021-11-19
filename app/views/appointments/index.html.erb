@@ -23,10 +23,10 @@
         <td><%= appointment.surname %></td>
         <td><%= appointment.phone %></td>
         <td><%= appointment.notes %></td>
-        <td><%= appointment.belongs_to %></td>
-        <td><%= link_to 'Show', appointment %></td>
-        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
-        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= appointment.notes %></td>
+        <td><%= link_to 'Show', [@professional, appointment] %></td>
+        <td><%= link_to 'Edit', edit_professional_appointment_path(@professional, appointment) %></td>
+        <td><%= link_to 'Destroy', [@professional, appointment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Appointment', new_appointment_path %>
+<%= link_to 'New Appointment', new_professional_appointment_path(@professional) %>
