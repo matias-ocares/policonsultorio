@@ -14,7 +14,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
-    @appointment = Appointment.new
+    @appointment = @professional.appointments.new
   end
 
   # GET /appointments/1/edit
@@ -23,7 +23,7 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
-    @appointment = Appointment.new(appointment_params)
+    @appointment = @professional.appointments.new(appointment_params)
 
     if @appointment.save
       redirect_to @appointment, notice: 'Appointment was successfully created.'
@@ -54,7 +54,7 @@ class AppointmentsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_appointment
-      @appointment = Appointment.find(params[:id])
+      @appointment = @professional.appointments.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
