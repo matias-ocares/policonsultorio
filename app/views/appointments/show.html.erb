@@ -26,8 +26,8 @@
 </p>
 
 <p>
-  <strong>Belongs to:</strong>
-  <%= @appointment.belongs_to %>
+  <strong>Profesional:</strong>
+  <%= @appointment.professional.name %>
 </p>
 
 <%= link_to 'Edit', edit_professional_appointment_path(@professional, @appointment) %> |
