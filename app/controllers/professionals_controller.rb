@@ -21,7 +21,6 @@ class ProfessionalsController < ApplicationController
 
   # POST /professionals
   def create
-    if(professional_exists(professional_params[:name]))
       @professional = Professional.new(professional_params)
 
       if @professional.save
@@ -29,9 +28,6 @@ class ProfessionalsController < ApplicationController
       else
         render :new
       end
-    else
-      redirect_to professionals_url,  notice: 'El profesional '+professional_params[:name]+' ya existe.'
-    end
   end
 
   # PATCH/PUT /professionals/1
@@ -45,12 +41,11 @@ class ProfessionalsController < ApplicationController
 
   # DELETE /professionals/1
   def destroy
-    if(has_appointments(@professional))
-      @professional.destroy
-      redirect_to professionals_url, notice: 'El profesional '+@professional.name+' fue eliminado correctamente.'
-    else
-      redirect_to professionals_url, notice: 'El profesional '+@professional.name+' tiene turnos asignados. No pudo eliminarse.'
-    end
+      if @professional.destroy
+        redirect_to professionals_url, notice: 'El profesional '+@professional.name+' fue eliminado correctamente.'
+      else
+        redirect_to professionals_url, notice: 'El profesional '+@professional.name+' tiene turnos asociados. No pudo eliminarse.'
+      end
   end
 
   private
@@ -64,13 +59,4 @@ class ProfessionalsController < ApplicationController
       params.require(:professional).permit(:name)
     end
 
-#Validaciones-----------
-
-  def professional_exists (professional)
-    return !(Professional.exists?(name: professional))
-  end
-
-  def has_appointments(professional)
-    return !(professional.appointments.size >0)
-  end
 end
