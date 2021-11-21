@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Appointments</h1>
+<%= form_tag({controller: :appointments, action: :index}, {method: :get}) do  %>
+  <%= date_field_tag :fecha %>
+  <%=submit_tag "Filtrar por fecha", name: nil %>
+  <% end %>
 
 <table>
   <thead>

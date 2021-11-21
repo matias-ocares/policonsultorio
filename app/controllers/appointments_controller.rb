@@ -4,8 +4,12 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
-    #@appointments = Appointment.all
-    @appointments = @professional.appointments
+    if params[:fecha].present?
+      fecha=Date.parse(params[:fecha])
+      @appointments = Appointment.where(:date=> fecha.beginning_of_day..fecha.end_of_day, professional: @professional)
+    else
+      @appointments = @professional.appointments
+    end 
   end
 
   # GET /appointments/1
@@ -35,7 +39,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   def update
     if @appointment.update(appointment_params)
-      redirect_to @appointment, notice: 'Appointment was successfully updated.'
+      redirect_to [@appointment.professional, @appointment], notice: 'Appointment was successfully updated.'
     else
       render :edit
     end
