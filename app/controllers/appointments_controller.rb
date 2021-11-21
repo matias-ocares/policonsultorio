@@ -48,8 +48,15 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1
   def destroy
     @appointment.destroy
-    redirect_to professional_appointments_url, notice: 'Appointment was successfully destroyed.'
+    redirect_to professional_appointments_url, notice: 'Se canceló el turno correctamente.'
   end
+
+  #DELETE ALL
+  def delete_all
+    @professional.appointments.destroy_all
+    redirect_to professional_appointments_url, notice: 'Se cancelaron todos los turnos.'
+  end
+
 
   private
     def set_professional

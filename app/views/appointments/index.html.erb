@@ -30,7 +30,7 @@
         <td><%= appointment.professional.name %></td>
         <td><%= link_to 'Ver', [@professional, appointment] %></td>
         <td><%= link_to 'Modificar', edit_professional_appointment_path(@professional, appointment) %></td>
-        <td><%= link_to 'Cancelar turno', [@professional, appointment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Cancelar turno', [@professional, appointment], method: :delete, data: { confirm: '¿Seguro que desea cancelar el turno?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,5 +39,6 @@
 <br>
 
 <%= link_to 'New Appointment', new_professional_appointment_path(@professional) %>
+<%= link_to 'Cancelar todos los turnos', delete_all_professional_appointments_path, method: :post, data: { confirm: '¿Seguro que desea cancelar todos los turnos?' } %>
 <%= link_to 'Back', professionals_path %>
 
