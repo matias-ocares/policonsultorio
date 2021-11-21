@@ -14,10 +14,10 @@
     <% @professionals.each do |professional| %>
       <tr>
         <td><%= professional.name %></td>
-        <td><%= link_to 'Show', professional %></td>
+        <td><%= link_to 'Ver', professional %></td>
         <td><%= link_to 'Appointments', professional_appointments_path(professional) %></td>
-        <td><%= link_to 'Edit', edit_professional_path(professional) %></td>
-        <td><%= link_to 'Destroy', professional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Modificar', edit_professional_path(professional) %></td>
+        <td><%= link_to 'Eliminar', professional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

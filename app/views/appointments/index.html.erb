@@ -28,9 +28,9 @@
         <td><%= appointment.phone %></td>
         <td><%= appointment.notes %></td>
         <td><%= appointment.professional.name %></td>
-        <td><%= link_to 'Show', [@professional, appointment] %></td>
-        <td><%= link_to 'Edit', edit_professional_appointment_path(@professional, appointment) %></td>
-        <td><%= link_to 'Destroy', [@professional, appointment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', [@professional, appointment] %></td>
+        <td><%= link_to 'Modificar', edit_professional_appointment_path(@professional, appointment) %></td>
+        <td><%= link_to 'Cancelar turno', [@professional, appointment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
