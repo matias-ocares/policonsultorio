@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :professionals do
     resources :appointments do
-      post :delete_all, on: :collection
+      post :delete_all, on: :collection #Para elimintar todos los turnos de un professional
     end
 
   end
