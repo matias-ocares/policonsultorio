@@ -4,15 +4,15 @@ require 'export_controller'
 # Build template data class.
 module ExportHelper
 
-def display_professionals
-  result=[]
-  list = Professional.all
-  list.each do |clave|
-      result<< clave[:name]
+  def display_professionals
+    result=[]
+    list = Professional.all
+    list.each do |clave|
+        result<< clave[:name]
+    end
+    return result
+        
   end
-  return result
-      
-end
 
 
   class Export
@@ -170,29 +170,31 @@ def exportprof(date, professional)
   # Set up template data.
                    
 
-  lista = Polycon::Models::Appointment.showexport(date,professional)
+  #lista = Polycon::Models::Appointment.showexport(date,professional)
+  fecha=Date.parse(date)
+  lista=[]
+  lista << Appointment.includes(:professional).where(:date=> fecha.beginning_of_day..fecha.end_of_day, :professional.name=>professional)
+  
   lista.each do |clave|
     self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional.name])
   end
-
 # Produce result.
   rhtml.run(self.get_binding)
   reporte ="reporte"+rand(999).to_s+".html"
-  File.open(Polycon::PATH+reporte, "w") do |fichero|
+  File.open(Dir.home()+"/"+reporte, "w") do |fichero|
     fichero.write(rhtml.result(self.get_binding))
   end
-  return "Se generó el reporte solicitado con nombre: "+reporte+" en el directorio #{Polycon::PATH}"
- 
-  end
+  return "Se generó el reporte solicitado con nombre: "+reporte+" en el directorio #{Dir.home()+"/"}" 
+end
 
-  def export(fecha)
+  def export(date)
 
 
     rhtml = ERB.new(get_template)
   
     # Set up template data.
-     #lista =[]
-     #fecha=Date.parse(date)               
+     lista =[]
+     fecha=Date.parse(date)               
      lista << Appointment.includes(:professional).where(:date=> fecha.beginning_of_day..fecha.end_of_day)
        
     lista.each do |other|
