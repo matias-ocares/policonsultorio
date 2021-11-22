@@ -1,9 +1,20 @@
 require 'erb'
-require 'polycon/models/appointment'
 require 'export_controller'
 
 # Build template data class.
 module ExportHelper
+
+def display_professionals
+  result=[]
+  list = Professional.all
+  list.each do |clave|
+      result<< clave[:name]
+  end
+  return result
+      
+end
+
+
   class Export
   def initialize(date)
     @date = date

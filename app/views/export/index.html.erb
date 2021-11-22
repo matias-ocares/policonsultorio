@@ -1,6 +1,7 @@
 
 
   <%= form_tag({controller: :export, action: :index}, {method: :get}) do  %>
-    <%= date_field_tag :date %>
+    <%= select_tag :name, options_for_select(display_professionals)%>
+    <%= date_field_tag :date, input_html:{required:true}%>
     <%=submit_tag "Exportar", name: nil %>
     <% end %>
