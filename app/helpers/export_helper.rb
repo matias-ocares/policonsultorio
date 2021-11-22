@@ -1,10 +1,11 @@
 require 'erb'
 require 'polycon/models/appointment'
-require 'professionals_helper'
+require 'export_controller'
 
 # Build template data class.
-class Export
-  def initialize( date )
+module ExportHelper
+  class Export
+  def initialize(date)
     @date = date
     #@turnos = []
     @fulldate= []
@@ -137,13 +138,13 @@ class Export
 end
 
 def add_feature_all( date, name, surname, phone, professional )
-  date = date
+  date = date.strftime("%Y-%m-%d %H:%M")
   index = @fulldate.find_index{|val| val == date}
   if(index!=nil)
     dato = "\n Name: "+name+" Surname: "+surname+" - Phone: "+phone+" Professional: "+professional
     @name[index]=@name[index]+dato
   else
-    @fulldate<< date.strftime("%Y-%m-%d %H:%M")
+    @fulldate<< date
     @name << "Name: "+name+" Surname: "+surname+" - Phone: "+phone+" Professional: "+professional
     @surname << surname
     @phone << phone
@@ -173,19 +174,19 @@ def exportprof(date, professional)
  
   end
 
-  def export(date)
+  def export(fecha)
 
 
     rhtml = ERB.new(get_template)
   
     # Set up template data.
-     lista =[]
-     fecha=Date.parse(date)               
-     lista << Appointment.joins(:professional).where(:date=> fecha.beginning_of_day..fecha.end_of_day)
+     #lista =[]
+     #fecha=Date.parse(date)               
+     lista << Appointment.includes(:professional).where(:date=> fecha.beginning_of_day..fecha.end_of_day)
        
     lista.each do |other|
       other.each do |clave|
-      self.add_feature_all(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional])
+      self.add_feature_all(clave[:date],clave[:name], clave[:surname], clave[:phone], clave.professional.name)
     end
   end
   
@@ -198,4 +199,5 @@ def exportprof(date, professional)
     return "Se generó el reporte solicitado con nombre: "+reporte+" en el directorio #{Dir.home()+"/"}"
    
     end
+end
 end

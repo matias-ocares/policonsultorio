@@ -1,0 +1,6 @@
+
+
+  <%= form_tag({controller: :export, action: :index}, {method: :get}) do  %>
+    <%= date_field_tag :date %>
+    <%=submit_tag "Exportar", name: nil %>
+    <% end %>
