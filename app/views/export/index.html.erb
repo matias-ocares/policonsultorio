@@ -1,7 +1,15 @@
 
-
+<h1>Exportar grillar de turnos</h1>
   <%= form_tag({controller: :export, action: :index}, {method: :get}) do  %>
+    <div>
     <%= select_tag :name, options_for_select(display_professionals),{:include_blank=>'Profesional'} %>
+    </div>
+    <div>
     <%= date_field_tag :date, input_html:{required:true}%>
+    </div>
+    <div>
+    <%=check_box_tag(:week) %>
+    <%=label_tag(:week, "Exportar semana completa") %>
+    </div>
     <%=submit_tag "Exportar", name: nil %>
     <% end %>
