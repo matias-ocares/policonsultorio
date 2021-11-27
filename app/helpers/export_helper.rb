@@ -1,7 +1,6 @@
 require 'erb'
 require 'export_controller'
 
-# Build template data class.
 module ExportHelper
 
   def display_professionals
@@ -27,7 +26,7 @@ module ExportHelper
   end
 
   def add_feature( date, name, surname, phone, professional )
-    date = date.delete!".paf"
+    date = date.strftime("%Y-%m-%d %H:%M")
     @fulldate<< date
     @name << "Name: "+name+" Surname: "+surname+" - Phone: "+phone+" Professional: "+professional
     @surname << surname
@@ -173,11 +172,12 @@ def exportprof(date, professional)
   #lista = Polycon::Models::Appointment.showexport(date,professional)
   fecha=Date.parse(date)
   lista=[]
-  lista << Appointment.includes(:professional).where(:date=> fecha.beginning_of_day..fecha.end_of_day, :professional.name=>professional)
+  lista << Appointment.includes(:professional).where(:date=> fecha.beginning_of_day..fecha.end_of_day, professional: {name: professional})
   
-  lista.each do |clave|
-    self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave[:professional.name])
-  end
+  lista.each do |other|
+    other.each do |clave|
+    self.add_feature(clave[:date], clave[:name], clave[:surname], clave[:phone], clave.professional.name)
+  end end
 # Produce result.
   rhtml.run(self.get_binding)
   reporte ="reporte"+rand(999).to_s+".html"
