@@ -1,5 +1,5 @@
 
-<h1>Exportar grillar de turnos</h1>
+<h1>Exportar grilla de turnos</h1>
   <%= form_tag({controller: :export, action: :index}, {method: :get}) do  %>
     <div>
     <%= select_tag :name, options_for_select(display_professionals),{:include_blank=>'Profesional'} %>
