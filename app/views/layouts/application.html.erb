@@ -11,6 +11,12 @@
   </head>
 
   <body>
+  <% if user_signed_in? %>
+  <p>
+   Hola <%= current_user.email %>
+   <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %>
+   </p>
+   <% end %>
   <%= render "shared/navbar" %>
     <%= yield %>
   </body>

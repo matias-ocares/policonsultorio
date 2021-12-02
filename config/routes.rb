@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   resources :professionals do
     resources :appointments do
       post :delete_all, on: :collection #Para elimintar todos los turnos de un professional
