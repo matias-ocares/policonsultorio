@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :usuarios
   root to: 'professionals#index'
 
   devise_for :users
