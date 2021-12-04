@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     end
 
   end
+
+  post '/usuarios/new', to:'usuarios#create'
+  post '/usuarios/:id/edit' , to:'usuarios#update'
+
   resources :export
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

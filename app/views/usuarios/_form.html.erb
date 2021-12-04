@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :Rol %>
-    <%= select_tag :role, raw("<option>consulta</option><option>asistencia</option><option>administracion</option>") %>
+    <%= form.select :role, options_for_select(["consulta","asistencia","administracion"], :selected=> usuario.role )%>
   </div>
 
   <div class="actions">

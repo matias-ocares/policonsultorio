@@ -23,8 +23,8 @@ class UsuariosController < ApplicationController
   def create
     @usuario = User.new(usuario_params)
 
-    if @User.save
-      redirect_to @usuario, notice: 'Usuario was successfully created.'
+    if @usuario.save
+      redirect_to usuarios_url, notice: 'Se creó el usuario correctamente.'
     else
       render :new
     end
@@ -32,8 +32,8 @@ class UsuariosController < ApplicationController
 
   # PATCH/PUT /usuarios/1
   def update
-    if @User.update(usuario_params)
-      redirect_to @usuario, notice: 'Usuario was successfully updated.'
+    if @usuario.update(usuario_params)
+      redirect_to usuarios_url, notice: 'Se modificó el usuario correctamente.'
     else
       render :edit
     end
