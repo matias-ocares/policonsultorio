@@ -3,13 +3,14 @@ class ExportController < ApplicationController
 
     def index
         if params[:date].present?
+        
             if !params[:week] #Sólo exporta un día.
                 if params[:name].present?
                     ex = ExportHelper::Export.new(params[:date])
-                    ex.exportprof(params[:date], params[:name])
+                    message = ex.exportprof(params[:date], params[:name])
                 else
                     ex = ExportHelper::Export.new(params[:date])
-                    ex.export(params[:date])
+                    message = ex.export(params[:date])
                 end
             else
                 #Exporta semana completa
@@ -17,15 +18,15 @@ class ExportController < ApplicationController
                 week = get_array_week(date)
                 if params[:name].present?
                     ex = ExportHelper::Export.new(week)
-                    ex.exportweekprof(week, params[:name])
+                    message= ex.exportweekprof(week, params[:name])
                 else
                     ex = ExportHelper::Export.new(week)
-                    ex.exportweek(week)
+                    message = ex.exportweek(week)
                 end
                 
             end
-        else
-            #Acá iría error que falta ingresar fecha.
+            redirect_to export_index_url, notice: message
+            
         end
     end
 
