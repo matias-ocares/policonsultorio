@@ -1,3 +1,8 @@
+
 <%=link_to "Professionals", professionals_url %>
 <%=link_to "Exportar Grilla", export_index_url %>
+<% if can? :manage, User %>
 <%=link_to "Usuarios", usuarios_url %>
+<% end %>
+Hola <%= current_user.email %>
+<%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %>

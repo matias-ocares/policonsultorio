@@ -1,9 +1,11 @@
 class UsuariosController < ApplicationController
+  #load_and_authorize_resource
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 
   # GET /usuarios
   def index
     @usuarios = User.all
+    authorize! :read, @usuarios
   end
 
   # GET /usuarios/1

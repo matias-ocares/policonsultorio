@@ -4,6 +4,7 @@
   <strong>Name:</strong>
   <%= @professional.name %>
 </p>
-
+<% if can? :manage, Professional %>
 <%= link_to 'Edit', edit_professional_path(@professional) %> |
+<% end %>
 <%= link_to 'Back', professionals_path %>

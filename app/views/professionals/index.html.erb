@@ -16,14 +16,17 @@
         <td><%= professional.name %></td>
         <td><%= link_to 'Ver', professional %></td>
         <td><%= link_to 'Appointments', professional_appointments_path(professional) %></td>
+        <% if can? :manage, Professional %>
         <td><%= link_to 'Modificar', edit_professional_path(professional) %></td>
         <td><%= link_to 'Eliminar', professional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if can? :manage, Professional %>
 <%= link_to 'New Professional', new_professional_path %>
+<% end%>
 
