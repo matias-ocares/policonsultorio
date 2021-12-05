@@ -15,11 +15,12 @@
     <%= form.label :email %>
     <%= form.text_field :email %>
   </div>
-
+  <%if request.original_url.include?("new") %>
   <div class="field">
     <%= form.label :password %>
     <%= form.text_field :password %>
   </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :Rol %>

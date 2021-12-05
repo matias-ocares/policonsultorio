@@ -4,5 +4,5 @@
 <% if can? :manage, User %>
 <%=link_to "Usuarios", usuarios_url %>
 <% end %>
-Hola <%= current_user.email %>
+<%= current_user.email %>
 <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %>
