@@ -2,15 +2,31 @@
 <p id="notice"><%= notice %></p>
 <h1>Exportar grilla de turnos</h1>
   <%= form_tag({controller: :export, action: :index}, {method: :get}) do  %>
-    <div>
+
+    <table>
+    <thead>
+      <tr>
+        <th>Profesional:</th>
+        <th>Fecha (obligatorio):</th>
+        <th>Diario/semanal: </th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>
     <%= select_tag :name, options_for_select(display_professionals),{:include_blank=>'Profesional'} %>
-    </div>
-    <div>
+    </td>
+    <td>
     <%= date_field_tag :date, input_html:{required:true}%>
-    </div>
-    <div>
+    </td>
+    <td>
+    
     <%=check_box_tag(:week) %>
     <%=label_tag(:week, "Exportar semana completa") %>
-    </div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
     <%=submit_tag "Exportar", name: nil %>
     <% end %>
