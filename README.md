@@ -1,6 +1,6 @@
 # POLYCONSULTORIO
 ## TERCER ENTREGA: Estado del proyecto al 06/12/2021.
-Se realizaron los requerimientos detallados
+Se realizaron los requerimientos detallados para la última entrega
 
 ## SEGUNDA ENTREGA: Estado del proyecto al 30/10/2021.
 ### Correcciones de primer entrega:
