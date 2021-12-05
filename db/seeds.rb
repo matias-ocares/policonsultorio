@@ -9,3 +9,9 @@
 User.create(email: 'consul@policon.com', password: '123456', role: 0)
 User.create(email: 'asist@policon.com', password: '123456', role: 1)
 User.create(email: 'admin@policon.com', password: '123456', role: 2)
+
+prof1 = Professional.create(name: "Juan Fernandez")
+prof2 = Professional.create(name: "Maria Perez")
+
+Appointment.create(date:DateTime.new(2022, 01, 01, 15, 0, 0),name: "Emiliano", surname: "Lopez", phone: 12345678, professional_id: prof1.id)
+Appointment.create(date:DateTime.new(2022, 01, 01, 10, 0, 0),name: "Antonela", surname: "Sosa", phone: 3456789012, professional_id: prof2.id)
