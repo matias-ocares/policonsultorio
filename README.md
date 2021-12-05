@@ -1,11 +1,17 @@
 # POLYCONSULTORIO
 ## TERCER ENTREGA: Estado del proyecto al 05/12/2021.
 Se realizaron los requerimientos detallados para la última entrega.
+
 Se adaptaron los requerimientos desarrollados en las primeras entregas dentro de una aplicación web Ruby on Rails.
+
 De la entrega anterior se mantuvo el modelo original de Appointment y Professional, habiendo incorporando User.
+
 Los elementos de nuestro modelo de datos ya no son persistidos en archivos y directorios, para esta nueva etapa hemos hecho uso de *ActiveRecord* y *sqlite3*.
+
 Para el manejo de sesión de usuarios se utilizó la gema *devise*.
+
 Para la validación de roles y permisos se utilizó la gema *cancancan*.
+
 En el archivo *seeds* se cargó un set inicial de 3 usuarios con sus roles respectivos para poder comenzar con una prueba de la aplicación.
 
 Como se mencionó anteriormente, en esta última entrega se incorporó el manejo de usuarios y roles, habiendo implementado mecanismos de autenticación y autorización con las gemas antes mecionadas.
