@@ -6,7 +6,7 @@ Se adaptaron los requerimientos desarrollados en las primeras entregas dentro de
 
 De la entrega anterior se mantuvo el modelo original de Appointment y Professional, habiendo incorporando User.
 
-Los elementos de nuestro modelo de datos ya no son persistidos en archivos y directorios, para esta nueva etapa hemos hecho uso de *ActiveRecord* y *sqlite3*.
+Los elementos del modelo de datos ya no son persistidos en archivos y directorios, para esta nueva etapa hemos hecho uso de *ActiveRecord* y *sqlite3*.
 
 Para el manejo de sesión de usuarios se utilizó la gema *devise*.
 
@@ -22,7 +22,7 @@ Para esta nueva entrega se incorporaron las restricciones vinculadas a los usuar
 * El rol Administración habilita la gestión de la totalidad de las funcionalidades, incluyendo la de crear y modificar usuarios.
 * El rol Asistencia habilita la gestión de turnos, y la consulta de profesionales.
 * El rol Consulta sólo habilita consulta de turnos y profesionales.
-*Para los 3 perfiles se habilitó la opción de exportar grilla de turnos.*
+* *Para los 3 perfiles se habilitó la opción de exportar grilla de turnos.*
 
 
 ## SEGUNDA ENTREGA: Estado del proyecto al 30/10/2021.
