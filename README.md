@@ -1,6 +1,12 @@
 # POLYCONSULTORIO
+## CORRECCIONES - TERCER ENTREGA: Estado del proyecto al 16/12/2021.
+Se realizaron las correcciones marcadas respecto a la última entrega.
+* Las grillas semanales ahora exportan correctamente desde el día lunes respecto a la fecha ingresada.
+
+* Al exportar grillas ahora se permite la descarga del archivo desde el browser. Esto se resolvió haciendo uso del método *send_data*.
+
+
 ## TERCER ENTREGA: Estado del proyecto al 05/12/2021.
-Correccion.
 Se realizaron los requerimientos detallados para la última entrega.
 
 Se adaptaron los requerimientos desarrollados en las primeras entregas dentro de una aplicación web Ruby on Rails.

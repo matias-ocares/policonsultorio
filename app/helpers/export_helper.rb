@@ -179,17 +179,13 @@ def exportprof(date, professional)
   end end
 # Produce result.
   rhtml.run(self.get_binding)
-  reporte ="reporte"+rand(999).to_s+".html"
-  File.open(Dir.home()+"/"+reporte, "w") do |fichero|
-    fichero.write(rhtml.result(self.get_binding))
-  end
-  return "Se generó el reporte solicitado con nombre: "+reporte+" en el directorio #{Dir.home()+"/"}" 
+  return rhtml.result(self.get_binding) 
 end
 
   def export(date)
 
-
     rhtml = ERB.new(get_template)
+    
   
     # Set up template data.
      lista =[]
@@ -202,14 +198,11 @@ end
     end
   end
   
+  
+  
   # Produce result.
     rhtml.run(self.get_binding)
-    reporte ="reporte"+rand(999).to_s+".html"
-    File.open(Dir.home()+"/"+reporte, "w") do |fichero|
-      fichero.write(rhtml.result(self.get_binding))
-    end
-    return "Se generó el reporte solicitado con nombre: "+reporte+" en el directorio #{Dir.home()+"/"}"
-   
+    return rhtml.result(self.get_binding)
     end
 
 
@@ -340,17 +333,14 @@ end
         fecha=Date.parse(date)               
         lista << Appointment.includes(:professional).where(:date=> fecha.beginning_of_day..fecha.end_of_day, professional: {name: professional})
       end
-      lista.each do |clave|
+      lista.each do |elem|
+        elem.each do |clave|
         self.add_feature(clave[:date],clave[:name], clave[:surname], clave[:phone], clave.professional.name)
-      end
+      end end
     
     # Produce result.
       rhtml.run(self.get_binding)
-      reporte ="reporte"+rand(999).to_s+".html"
-      File.open(Dir.home()+"/"+reporte, "w") do |fichero|
-        fichero.write(rhtml.result(self.get_binding))
-      end
-      return "Se generó el reporte solicitado con nombre: "+reporte+" en el directorio #{Dir.home()+"/"}"    
+      return rhtml.result(self.get_binding)  
       end
     
       def exportweek(week)
@@ -373,11 +363,7 @@ end
       
       # Produce result.
         rhtml.run(self.get_binding)
-        reporte ="reporte"+rand(999).to_s+".html"
-        File.open(Dir.home()+"/"+reporte, "w") do |fichero|
-          fichero.write(rhtml.result(self.get_binding))
-        end
-        return "Se generó el reporte solicitado con nombre: "+reporte+" en el directorio #{Dir.home()+"/"}"       
+        return rhtml.result(self.get_binding)
         end
 end
 end
