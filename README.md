@@ -1,5 +1,6 @@
 # POLYCONSULTORIO
 ## TERCER ENTREGA: Estado del proyecto al 05/12/2021.
+Correccion.
 Se realizaron los requerimientos detallados para la última entrega.
 
 Se adaptaron los requerimientos desarrollados en las primeras entregas dentro de una aplicación web Ruby on Rails.
